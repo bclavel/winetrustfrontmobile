@@ -9,17 +9,17 @@ import LogInScreen from '../Screens/LogInScreen';
 import SignInScreen from '../Screens/SignInScreen';
 import HomeScreen from '../Screens/HomeScreen';
 // import ScanScreen from '../Screens/ScanScreen';
-// import ProductScreen from '../Screens/ProductScreen';
+import ProductScreen from '../Screens/ProductScreen';
 
 
-// Création de ma navigation StackNavigation 
+// Création de ma navigation StackNavigation
 var StackNavigator = createStackNavigator({
-// pages de ma navigation sans Bottom   
+// pages de ma navigation sans Bottom
  LogIn: {screen:LogInScreen, navigationOptions: {header: null}},
  SignIn: SignInScreen,
- Home: HomeScreen
+ Home: HomeScreen,
+ Product: ProductScreen
 //  Scan: ScanScreen,
-//  Product: ProductScreen
 });
 
 export default Navigation = createAppContainer(StackNavigator);
