@@ -2,12 +2,16 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage, Divider, Button} from 'react-native-elements';
 
+
 export default class SignInScreen extends React.Component {
 
   static navigationOptions = {
     title: 'Enregistrement',
     headerStyle: {
-      backgroundColor: '#711A1A'
+      backgroundColor: '#711A1A',
+    }, headerTitleStyle:{
+      flex: 1,
+      textAlign: 'center'
     },
     headerTintColor: '#fff'
   };

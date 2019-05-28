@@ -1,21 +1,15 @@
 import React from 'react'; 
 import { View, StyleSheet, Image, Text } from 'react-native';
-import {  Button } from 'react-native-elements';
-
+import {  Button,  } from 'react-native-elements';
+import LogoScreen from './LogoScreen'
 export default class HomeScreen extends React.Component {
 
     static navigationOptions = {
-    headerStyle: {
-      Title: 'WineTrust',
-      backgroundColor: '#711A1A',
-    }, headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    headerRight: <Text>Coucou</Text>,
-    headerTitle: <Text>WineTrust</Text>,
-    headerBackTitle: <Text>Back</Text>
-  };
+      headerStyle: {
+        backgroundColor: '#711A1A'
+      },
+      headerTintColor: '#fff'
+    };
 
     render(){
     return (
@@ -29,7 +23,7 @@ export default class HomeScreen extends React.Component {
     buttonStyle={{ paddingRight: 130, paddingLeft: 130, marginTop: 40, marginBottom: 75}}
     title ="Scanner la bouteille"
     backgroundColor= "#22323F"
-    // onPress={this.handleSumbit} Correspond à la nav vers le scann
+    onPress={ () => this.props.navigation.navigate('Scan')}
     />
 
     </View>
