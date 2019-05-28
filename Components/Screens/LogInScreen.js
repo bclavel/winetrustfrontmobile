@@ -41,7 +41,7 @@ export default class LogInScreen extends React.Component {
               backgroundColor= "#22323F"
               onPress={ () => this.props.navigation.navigate('Home')}
             />
-            <TouchableHighlight onPress={ () => this.props.navigation.navigate('Home')}>
+            <TouchableHighlight onPress={ () => this.props.navigation.navigate('SignIn')}>
               <Text p style={{color: "white", marginTop: 10,}}> 
                 Pas de compte ? C’est par ici!
               </Text>
