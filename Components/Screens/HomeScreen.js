@@ -1,24 +1,19 @@
 import React from 'react'; 
 import { View, StyleSheet, Image, Text } from 'react-native';
 import {  Button,  } from 'react-native-elements';
-import LogoScreen from './LogoScreen'
-export default class HomeScreen extends React.Component {
 
-    static navigationOptions = {
-      headerStyle: {
-        backgroundColor: '#711A1A'
-      },
-      headerTintColor: '#fff'
-    };
+
+
+export default class HomeScreen extends React.Component {
 
     render(){
     return (
     <View 
     style={{flex:1, justifyContent:"center", alignItems:"center",backgroundColor: 'white' }}>
     <Image
-            style= {styles.image}
-            source={require('../../assets/tirebouchon.png')}
-            />
+      style= {styles.image}
+      source={require('../../assets/tirebouchon.png')}
+      />
     <Button
     buttonStyle={{ paddingRight: 130, paddingLeft: 130, marginTop: 40, marginBottom: 75}}
     title ="Scanner la bouteille"

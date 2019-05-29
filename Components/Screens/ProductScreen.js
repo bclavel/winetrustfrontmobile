@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, Image, WebView, ScrollView } from 'react-native';
 import { Divider, Button } from 'react-native-elements';
-import Transaction from './Transaction'
+import Transaction from './Transaction';
 
 export default class ProductScreen extends React.Component {
     constructor(){
@@ -96,5 +96,8 @@ export default class ProductScreen extends React.Component {
       },
       imagePicto : {
         marginLeft : 5,
+      },
+      image: {
+        width: '100%'
       }
     });

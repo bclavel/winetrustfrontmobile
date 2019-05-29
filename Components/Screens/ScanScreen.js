@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, StyleSheet,View } from 'react-native';
+import { Button, Text, StyleSheet,View, Image } from 'react-native';
 import { Constants, Permissions, BarCodeScanner } from 'expo';
 
 export default class ScanScreen extends React.Component {
@@ -20,6 +20,7 @@ export default class ScanScreen extends React.Component {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
         this.setState({ hasCameraPermission: status === 'granted' });
       }
+
     
       render() {
         const { hasCameraPermission, scanned } = this.state;
@@ -30,6 +31,7 @@ export default class ScanScreen extends React.Component {
         if (hasCameraPermission === false) {
           return <Text>No access to camera</Text>;
         }
+        
         return (
           <View
             style={{
@@ -38,21 +40,47 @@ export default class ScanScreen extends React.Component {
             }}>
             <BarCodeScanner
               onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
-              style={StyleSheet.absoluteFillObject}
+              style={[StyleSheet.absoluteFillObject, styles.camera]}
             />
-    
-            {scanned && (
-              <Button
-                title={'Tap to Scan Again'}
-                onPress={() => this.setState({ scanned: false })}
+   
+            {/* {scanned && (
+              <Button style={[styles.button]}
+                title={'Get your scan'}
+                style= {{backgroundColor: '#711A1A'}}
+                onPress={ () => this.props.navigation.navigate('Product')}
               />
-            )}
+            )} */}
+          
+            <Image
+            style= {styles.carre}
+            source={require('../../assets/scanqr.png')}
+            />
           </View>
         );
       }
     
       handleBarCodeScanned = ({ type, data }) => {
         this.setState({ scanned: true });
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        alert(`Votre bouteille a bien été scannée! ${type}  ${data}`);
+        console.log(data);
+        this.props.navigation.navigate('Product');
       };
 };
+const styles = StyleSheet.create({
+  camera:{
+    zIndex: 1
+  },
+  button:{
+    zIndex: 1
+  },
+  carre: {
+    zIndex:3000,
+    position: 'absolute',
+    top: 170,
+    left: 60,
+    bottom: 30,
+    right: 50,
+    resizeMode:'cover'
+  }
+});
+

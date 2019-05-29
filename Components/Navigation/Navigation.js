@@ -25,13 +25,35 @@ var StackNavigator = createStackNavigator({
         }
     },
 
- SignIn: SignInScreen,
+ SignIn: {
+        screen: SignInScreen,
+        headerMode: 'modal',
+         header: 'null',
+
+        navigationOptions: {
+        headerStyle: {
+            backgroundColor: '#711A1A'
+          },
+        headerTintColor: '#fff',
+
+        headerTitle: <LogoScreen />,
+        headerRight: <Image 
+                        source={require('../../assets/pictoAccount.png')}
+                        style={{height: 40, width: 40, marginRight: 10}}/>
+    }
+},
 
  Home: {
-     screen:HomeScreen,
+     screen: HomeScreen,
      headerMode: 'modal',
      header: 'null',
+     
         navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#711A1A'
+              },
+            headerTintColor: '#fff',
+
             headerTitle: <LogoScreen />,
             headerRight: <Image 
                             source={require('../../assets/pictoAccount.png')}
@@ -44,15 +66,33 @@ var StackNavigator = createStackNavigator({
      headerMode: 'modal',
      header: 'null',
      navigationOptions:{
+        headerStyle: {
+            backgroundColor: '#711A1A'
+          },
+        headerTintColor: '#fff',
+
          headerTitle: <LogoScreen />,
          headerRight: <Image 
                          source={require('../../assets/pictoAccount.png')}
                          style={{height: 40, width: 40, marginRight: 10}}/>
-        },
-        
- Product: ProductScreen
-}
+        }
+    },  
 
+ Product: {
+     screen: ProductScreen,
+     headerMode: 'modal',
+     header: 'null',
+     navigationOptions: {
+        headerStyle: {
+            backgroundColor: '#711A1A'
+          },
+        headerTintColor: '#fff',
+        headerTitle: <LogoScreen />,
+         headerRight: <Image 
+                         source={require('../../assets/pictoAccount.png')}
+                         style={{height: 40, width: 40, marginRight: 10}}/>
+        }
+    }
 });
 
 export default Navigation = createAppContainer(StackNavigator);

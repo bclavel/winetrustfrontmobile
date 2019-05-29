@@ -11,7 +11,7 @@ export default class LogoScreen extends React.Component {
     return (
       <View style={{alignItems: 'center', width:'100%'}}>
       <Image
-       source={require('../../assets/Logoheader.png')}
+       source={require('../../assets/Logogrand.png')}
        style={{width:'100%', height:40, resizeMode:'contain'}}
       />
       </View>
