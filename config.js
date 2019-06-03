@@ -1,0 +1,1 @@
+export default ipAdress = 'http://10.2.1.45:3000';

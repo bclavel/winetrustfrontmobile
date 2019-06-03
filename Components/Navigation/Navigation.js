@@ -6,7 +6,7 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 // Imports de mes screens components dans ma navigation
 import LogInScreen from '../Screens/LogInScreen';
-import SignInScreen from '../Screens/SignInScreen';
+import SignUpScreen from '../Screens/SignUpScreen';
 import HomeScreen from '../Screens/HomeScreen';
 import ProductScreen from '../Screens/ProductScreen';
 import ScanScreen from '../Screens/ScanScreen';
@@ -25,8 +25,8 @@ var StackNavigator = createStackNavigator({
         }
     },
 
- SignIn: {
-        screen: SignInScreen,
+ SignUp: {
+        screen: SignUpScreen,
         headerMode: 'modal',
          header: 'null',
 
