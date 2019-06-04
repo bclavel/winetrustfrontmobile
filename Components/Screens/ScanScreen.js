@@ -2,7 +2,10 @@ import React from 'react';
 import { Button, Text, StyleSheet,View, Image } from 'react-native';
 import { Constants, Permissions, BarCodeScanner } from 'expo';
 
-export default class ScanScreen extends React.Component {
+import { connect } from 'react-redux'; 
+
+class ScanScreen extends React.Component {
+  
   
   static navigationOptions = {
     headerStyle: {
@@ -63,9 +66,55 @@ export default class ScanScreen extends React.Component {
         this.setState({ scanned: true });
         alert(`Votre bouteille a bien été scannée! ${type}  ${data}`);
         console.log(data);
-        this.props.navigation.navigate('Product');
+
+        console.log('signin from front handled...');
+
+        fetch(`${url}/getproductmobile?producerHash=${data}`)
+        .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
+        ).then(product => {
+         console.log('ScanScreen : voici ma data', product)
+          if (product){
+            this.props.handleProduct(
+              product.ownerAddressEth,
+              product.productStatus,
+              product.producerHash,
+              product.productHash,
+              product.productCreationDate,
+              product.productAddressEth,
+              product.producerAddressEth,
+              product.productDomaine,
+              product.productCuvee,
+              product.productYoutube, 
+              product.productDeskImg,
+              product.productMobImg,
+              product.productMillesime,
+              product.productCepages,
+              product.productAppellation,
+              product.productRegion,
+              product.productCountry,
+              product.productQuality,
+              product.domainHistory,
+              product.productAccords,
+              product.domainPostalAddress,
+              product.domainUrl,
+              product.domainFacebook,
+              product.domainEmail)
+            this.props.navigation.navigate('Product')
+          } else {
+            this.setState({errorMessage: 'Wrong credentials, try again...'})
+          }
+          }).catch(err => {
+        console.log(err)
+        })
+        }
+        // fecth vers la route back qui va chercher le produit
+        // route get product, en paramètre on passe le hash 
+        // dans le back je fais un find(dans la base) pour un produit correspondant à ce hash,
+        // si jamais il existe, renvoie du back vers le front en res.json
+        // dans le .then, exploitation des données recues et balance dans le reducer
+
       };
-};
+
 const styles = StyleSheet.create({
   camera:{
     zIndex: 1
@@ -83,4 +132,71 @@ const styles = StyleSheet.create({
     resizeMode:'cover'
   }
 });
+
+// Création du composant container 
+function mapDispatchToProps (dispatch){
+  return {
+    handleProduct : function(
+      ownerAddressEth,
+      productStatus,
+      producerHash,
+      productHash,
+      productCreationDate,
+      productAddressEth,
+      producerAddressEth,
+      productDomaine,
+      productCuvee,
+      productYoutube, 
+      productDeskImg,
+      productMobImg,
+      productMillesime,
+      productCepages,
+      productAppellation,
+      productRegion,
+      productCountry,
+      productQuality,
+      domainHistory,
+      productAccords,
+      domainPostalAddress,
+      domainUrl,
+      domainFacebook,
+      domainEmail
+      ) {
+
+      dispatch({
+        type: 'scanproduct',
+        ownerAddressEth: ownerAddressEth,
+        productStatus : productStatus,
+        producerHash: producerHash,
+        productHash: productHash,
+        productCreationDate: productCreationDate,
+        productAddressEth: productAddressEth,
+        producerAddressEth: producerAddressEth,
+        productDomaine: productDomaine,
+        productCuvee : productCuvee,
+        productYoutube: productYoutube,
+        productDeskImg : productDeskImg,
+        productMobImg :  productMobImg,
+        productMillesime : productMillesime,
+        productCepages : productCepages,
+        productAppellation : productAppellation,
+        productRegion : productRegion,
+        productCountry :  productCountry,
+        productQuality : productQuality,
+        domainHistory : domainHistory,
+        productAccords : productAccords, 
+        domainPostalAddress : domainPostalAddress,
+        domainUrl : domainUrl,
+        domainFacebook :  domainFacebook,
+        domainEmail : domainEmail, 
+        historiqueTransactions : historiqueTransactions
+      })
+    }
+  }
+}
+
+export default connect (
+  null, 
+  mapDispatchToProps
+)(ScanScreen); 
 

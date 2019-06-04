@@ -3,7 +3,9 @@ import { Platform, StyleSheet, Text, View, Image, WebView, ScrollView } from 're
 import { Divider, Button } from 'react-native-elements';
 import Transaction from './Transaction';
 
-export default class ProductScreen extends React.Component {
+import { connect } from 'react-redux'; 
+
+class ProductScreen extends React.Component {
     constructor(){
         super()
         this.state = {
@@ -15,7 +17,7 @@ export default class ProductScreen extends React.Component {
         return (
           <ScrollView style={{flex : 1 }}>
             <Image style= {styles.image} source={require('../../assets/beauregard4.jpg')}/>
-            <Text style={styles.h1}>Chateau Beauregard 2014</Text>
+            <Text style={styles.h1}>{this.props.product.productDomaine}</Text>
             <Text style={styles.h4}>Domaine Beauregard</Text>
             <Text style={styles.h4}>Pomerol AOC</Text>
             <Text style={styles.h4}>Région de Bordeaux, France</Text>
@@ -54,7 +56,17 @@ export default class ProductScreen extends React.Component {
           </ScrollView>
         );
       }
+    };
+
+
+    function mapStateToProps(state) {
+      return {product: state.product}
     }
+
+    export default connect(
+      mapStateToProps,
+      null
+    ) (ProductScreen);
 
     const styles = StyleSheet.create({
       h1 :{

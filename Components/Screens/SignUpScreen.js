@@ -5,7 +5,7 @@ import { FormLabel, FormInput, FormValidationMessage, Divider, Button} from 'rea
 import ipAdress from '../../config';
 
 
-export default class SignInScreen extends React.Component {
+export default class SignUpScreen extends React.Component {
 
     constructor(){
     super()
