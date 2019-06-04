@@ -27,7 +27,9 @@ export default function( product = {}, action) {
             domainFacebook: action.domainFacebook,
             domainEmail: action.domainEmail
         }
-        console.log(action)
-
+        return productCopy;
+    } else { 
+        return product
     }
-}
+};
+
