@@ -27,6 +27,8 @@ export default function( product = {}, action) {
             domainFacebook: action.domainFacebook,
             domainEmail: action.domainEmail
         }
+        console.log('voici mon action' , action)
+        console.log('voici ma Copy', productCopy)
         return productCopy;
     } else { 
         return product

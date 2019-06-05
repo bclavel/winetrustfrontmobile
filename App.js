@@ -6,7 +6,7 @@ import Navigation from './Components/Navigation/Navigation';
 
 import product from './Reducers/product.reducer';
 
-import Provider from 'react-redux';
+import {Provider} from 'react-redux';
 
 import { createStore, combineReducers } from 'redux';
 

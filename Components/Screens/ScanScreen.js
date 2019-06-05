@@ -4,6 +4,8 @@ import { Constants, Permissions, BarCodeScanner } from 'expo';
 
 import { connect } from 'react-redux'; 
 
+import ipAdress from '../../config';
+
 class ScanScreen extends React.Component {
   
   
@@ -69,7 +71,7 @@ class ScanScreen extends React.Component {
 
         console.log('signin from front handled...');
 
-        fetch(`${url}/getproductmobile?producerHash=${data}`)
+        fetch(`${ipAdress}/getproductmobile?producerHash=${data}`)
         .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
         ).then(product => {
          console.log('ScanScreen : voici ma data', product)
@@ -100,6 +102,7 @@ class ScanScreen extends React.Component {
               product.domainFacebook,
               product.domainEmail)
             this.props.navigation.navigate('Product')
+
           } else {
             this.setState({errorMessage: 'Wrong credentials, try again...'})
           }
@@ -161,8 +164,8 @@ function mapDispatchToProps (dispatch){
       domainUrl,
       domainFacebook,
       domainEmail
-      ) {
-
+      ) 
+      {
       dispatch({
         type: 'scanproduct',
         ownerAddressEth: ownerAddressEth,
@@ -188,8 +191,7 @@ function mapDispatchToProps (dispatch){
         domainPostalAddress : domainPostalAddress,
         domainUrl : domainUrl,
         domainFacebook :  domainFacebook,
-        domainEmail : domainEmail, 
-        historiqueTransactions : historiqueTransactions
+        domainEmail : domainEmail
       })
     }
   }
