@@ -44,7 +44,7 @@ export default class SignUpScreen extends React.Component {
         console.log('ici mon data', data)
           data.result
             ? this.props.navigation.navigate('Home')
-            : this.setState({errorMessage: 'Identifiants de connexion déja connus'})
+            : this.setState({errorMessage: 'Identifiants de connexion déja connus, veuillez réessayer à nouveau'})
       }).catch(function(err){
         console.log(err)
       })

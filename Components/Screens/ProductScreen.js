@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StyleSheet, Text, View, Image, WebView, ScrollView, Linking, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, WebView, ScrollView, Linking, TouchableOpacity, BreadcrumbItem } from 'react-native';
 import { Divider, Button } from 'react-native-elements';
 import Transaction from './Transaction';
 
@@ -12,10 +12,35 @@ class ProductScreen extends React.Component {
       }
     }
 
+  
+
   render() {
-    var openDomainUrl = "https://" + this.props.product.domainUrl;
-    var openFacebook = "https://" + this.props.product.domainFacebook;
+    var openDomainUrl = this.props.product.domainUrl;
+    var openFacebook = this.props.product.domainFacebook;
     var openMail = "mailto:" + this.props.product.domainEmail;
+
+    console.log('ceci est mon produit', this.props.product)
+
+    var transactionList = this.props.product.historiqueTransactions.map((transaction, i)=>{
+
+      if (transaction.transactStatus === "validée") {
+        return(
+          <Transaction
+          toto="toto"
+          key={i}
+          transactStatus = {transaction.transactStatus}
+          transactAddressEth = {transaction.transactAddressEth}
+          sellerAddressEth = {transaction.sellerAddressEth}
+          sellerName = {transaction.sellerName}
+          sellerPostalAddress= {transaction.sellerPostalAddress}
+          buyerAddressEth = {transaction.buyerAddressEth}
+          buyerName = {transaction.buyerName}
+          buyerPostalAddress= {transaction.buyerPostalAddress}
+          transactValidationDate = {transaction.transactValidationDate} />
+        )
+      }
+      console.log("transaction", transaction);
+    })
 
     return (
       <ScrollView style={{flex : 1 }}>
@@ -57,10 +82,10 @@ class ProductScreen extends React.Component {
                  source= {{uri: this.props.product.productYoutube.replace('watch?v=', 'embed/') }}
          />
         </View>
-        <Text style={styles.standardTxt}></Text><Text style={{fontStyle : 'italic'}}>{this.props.product.domainHistory}</Text>
+        <Text style={styles.standardTxt}></Text><Text style={{fontStyle : 'italic', marginRight:7, marginLeft: 7}}>{this.props.product.domainHistory}</Text>
         <Divider style={{ backgroundColor: 'black', marginTop : 15, marginBottom : 15 }} />
-        <Text style={styles.h2}>Historique des transactions</Text>
-        <Transaction />
+        <Text style={styles.h2}>Historique des transactions </Text>
+          {transactionList}
       </ScrollView>
     );
   }
@@ -107,8 +132,8 @@ class ProductScreen extends React.Component {
       standardTxt : {
         fontFamily : 'Roboto',
         fontSize : 14,
-        marginLeft : 5,
-        marginRight : 5,
+        marginLeft : 10,
+        marginRight : 10,
       },
       WebViewContainer : {
         marginTop: (Platform.OS == 'ios') ? 20 : 10,

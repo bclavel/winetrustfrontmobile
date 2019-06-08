@@ -25,7 +25,8 @@ export default function( product = {}, action) {
             domainPostalAddress: action.domainPostalAddress,
             domainUrl: action.domainUrl,
             domainFacebook: action.domainFacebook,
-            domainEmail: action.domainEmail
+            domainEmail: action.domainEmail,
+            historiqueTransactions: action.historiqueTransactions
         }
         console.log('voici mon action' , action)
         console.log('voici ma Copy', productCopy)
