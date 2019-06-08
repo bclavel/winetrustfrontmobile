@@ -12,10 +12,10 @@ export default class HomeScreen extends React.Component {
     style={{flex:1, justifyContent:"center", alignItems:"center",backgroundColor: 'white' }}>
     <Image
       style= {styles.image}
-      source={require('../../assets/tirebouchon.png')}
+      source={require('../../assets/tirebouchon.jpg')}
       />
     <Button
-    buttonStyle={{ paddingRight: 130, paddingLeft: 130, marginTop: 40, marginBottom: 75}}
+    buttonStyle={{ paddingRight: 100, paddingLeft: 100, marginTop: 40, marginBottom: 75}}
     title ="Scanner la bouteille"
     backgroundColor= "#22323F"
     onPress={ () => this.props.navigation.navigate('Scan')}

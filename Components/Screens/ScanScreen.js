@@ -41,7 +41,8 @@ class ScanScreen extends React.Component {
           <View
             style={{
               flex: 1,
-              justifyContent: 'flex-end',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}>
             <BarCodeScanner
               onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
@@ -66,7 +67,7 @@ class ScanScreen extends React.Component {
     
       handleBarCodeScanned = ({ type, data }) => {
         this.setState({ scanned: true });
-        alert(`Votre bouteille a bien été scannée! ${type}  ${data}`);
+        // alert(`Votre bouteille a bien été scannée! ${type}  ${data}`);
         console.log(data);
 
         console.log('signin from front handled...');
@@ -100,8 +101,9 @@ class ScanScreen extends React.Component {
               product.domainPostalAddress,
               product.domainUrl,
               product.domainFacebook,
-              product.domainEmail)
-            this.props.navigation.navigate('Product')
+              product.domainEmail,
+              product.historiqueTransactions)
+              this.props.navigation.navigate('Product')
 
           } else {
             this.setState({errorMessage: 'Wrong credentials, try again...'})
@@ -127,11 +129,8 @@ const styles = StyleSheet.create({
   },
   carre: {
     zIndex:3000,
-    position: 'absolute',
-    top: 170,
-    left: 60,
-    bottom: 30,
-    right: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
     resizeMode:'cover'
   }
 });
@@ -163,8 +162,8 @@ function mapDispatchToProps (dispatch){
       domainPostalAddress,
       domainUrl,
       domainFacebook,
-      domainEmail
-      ) 
+      domainEmail,
+      historiqueTransactions) 
       {
       dispatch({
         type: 'scanproduct',
@@ -191,7 +190,8 @@ function mapDispatchToProps (dispatch){
         domainPostalAddress : domainPostalAddress,
         domainUrl : domainUrl,
         domainFacebook :  domainFacebook,
-        domainEmail : domainEmail
+        domainEmail : domainEmail,
+        historiqueTransactions : historiqueTransactions
       })
     }
   }
